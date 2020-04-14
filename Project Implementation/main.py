@@ -91,7 +91,10 @@ class ClickerState:
 
         Should do nothing if time <= 0.0
         """
-        pass
+        if time > 0:
+            self.total_cookies += self.get_cps() * time
+            self.cookies_cur_num += self.get_cps() * time
+            self.time += time
     
     def buy_item(self, item_name, cost, additional_cps):
         """
@@ -99,7 +102,10 @@ class ClickerState:
 
         Should do nothing if you cannot afford the item
         """
-        pass
+        if cost <= self.get_cookies():
+            self.cookies_cur_num -= cost
+            self.cps += additional_cps
+            self.history.append((self.get_time(), item_name, cost, self.total_cookies))
    
     
 def simulate_clicker(build_info, duration, strategy):

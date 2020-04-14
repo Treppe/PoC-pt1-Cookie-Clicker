@@ -21,15 +21,18 @@ class ClickerState:
     def __init__(self):
         self.total_cookies = 0.0
         self.cookies_cur_num = 0.0
-        self.time_cur_num = 0.0
-        self.cps_cur = 1.0
+        self.time = 0.0
+        self.cps = 1.0
         self.history = [(0.0, None, 0.0, 0.0)]
         
     def __str__(self):
         """
         Return human readable state
         """
-        return "not yet implemented"
+        output = ("Total cookies produced:" + str(self.total_cookies) +
+                 " Current amount of cookies:" + str(self.cookies_cur_num) + 
+                 " Current time in sec:" + str(self.time) + " CPS: " + str(self.cps))
+        return output
         
     def get_cookies(self):
         """

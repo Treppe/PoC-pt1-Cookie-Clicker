@@ -4,7 +4,7 @@ https://docs.python.org/2/library/unittest.html
 Note that code is designed to be much simpler than unittest
 and does NOT replicate unittest functionality
 """
-import user47_LAyfnSF9Hn_9 as cookie
+import user47_LAyfnSF9Hn_10 as cookie
 class TestSuite:
     """
     Create a suite of tests similar to unittest
@@ -42,6 +42,7 @@ clicker = cookie.ClickerState()
 #Implement test for get_cookies method
 suite.run_test(clicker.get_cookies(), 0.0, "Test #1: get_cookies()")
 suite.run_test(clicker.get_cps(), 1.0, "Test #2: get_cps()")
+suite.run_test(clicker.get_time(), 0.0, "Test #3: get_time()")
 
 suite.report_results()
                

@@ -49,7 +49,7 @@ class ClickerState:
 
         Should return a float
         """
-        return 0.0
+        return self.cps
     
     def get_time(self):
         """

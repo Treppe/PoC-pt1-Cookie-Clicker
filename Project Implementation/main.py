@@ -57,7 +57,7 @@ class ClickerState:
 
         Should return a float
         """
-        return 0.0
+        return self.time
     
     def get_history(self):
         """

@@ -41,7 +41,7 @@ class ClickerState:
         
         Should return a float
         """
-        return 0.0
+        return self.cookies_cur_num
     
     def get_cps(self):
         """

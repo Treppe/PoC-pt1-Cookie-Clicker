@@ -41,6 +41,7 @@ suite = TestSuite()
 clicker = cookie.ClickerState()
 #Implement test for get_cookies method
 suite.run_test(clicker.get_cookies(), 0.0, "Test #1: get_cookies()")
+suite.run_test(clicker.get_cps(), 1.0, "Test #2: get_cps()")
 
 suite.report_results()
                

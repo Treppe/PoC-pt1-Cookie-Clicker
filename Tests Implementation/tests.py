@@ -4,7 +4,7 @@ https://docs.python.org/2/library/unittest.html
 Note that code is designed to be much simpler than unittest
 and does NOT replicate unittest functionality
 """
-import user47_LAyfnSF9Hn_20 as cookie
+import user47_LAyfnSF9Hn_22 as cookie
 class TestSuite:
     """
     Create a suite of tests similar to unittest
@@ -81,6 +81,14 @@ suite.run_test(clicker, ("Total cookies produced:" + str(100.0) +
                  " Current time in sec:" + str(10.0) + " CPS: " + str(10.0)),
                "Test #6d: wait(10) with 10 CPS")
 '''
+
+clicker = cookie.ClickerState()
+clicker.buy_item("test", 100, 30)
+suite.run_test(clicker.get_history(), [(0, None, 0 , 0)], 'Test #7a: buy_item("test", 100, 30) in start state')
+clicker.cookies_cur_num = 100.0
+clicker.total_cookies = 200.0
+clicker.buy_item("test", 100.0, 30.0)
+suite.run_test(clicker.get_history(), [(0, None, 0 , 0), (0, "test", 100 , 200)], 'Test #7b: buy_item("test", 100, 30) with 100 current and 200 total cookies')
 
 suite.report_results()
                

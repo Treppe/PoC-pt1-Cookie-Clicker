@@ -81,7 +81,9 @@ class ClickerState:
 
         Should return a float with no fractional part
         """
-        return 0.0
+        time = (cookies - self.get_cookies()) // self.get_cps()
+        if time < 0 : time = 0
+        return float(time)
     
     def wait(self, time):
         """

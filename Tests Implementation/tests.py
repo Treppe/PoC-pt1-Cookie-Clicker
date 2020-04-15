@@ -4,7 +4,7 @@ https://docs.python.org/2/library/unittest.html
 Note that code is designed to be much simpler than unittest
 and does NOT replicate unittest functionality
 """
-import user47_LAyfnSF9Hn_22 as cookie
+import user47_YvFUcz3b88_26 as cookie
 class TestSuite:
     """
     Create a suite of tests similar to unittest
@@ -23,9 +23,12 @@ class TestSuite:
         """
         self.total_tests += 1
         if computed != expected:
-            msg = message + " Computed: " + str(computed)
-            msg += " Expected: " + str(expected)
-            print msg
+            msg_computed = " Computed: " + str(computed)
+            msg_expected = " Expected: " + str(expected)
+            print message
+            print msg_computed
+            print msg_expected
+            print
             self.failures += 1
     
     def report_results(self):
@@ -50,7 +53,7 @@ clicker.cookies_cur_num = 23.0
 suite.run_test(clicker.time_until(123), 100.0, "Test #5b: time_until(123) with 23 cookies")
 suite.run_test(clicker.time_until(20), .0, "Test #5c: time_until(20) with 23 cookies")
 
-# wait() tests. I have no idea how to implement expected value for _str_ and don't get a test pseudo-failures
+# wait() pseudo tests. I have no idea how to implement expected value for _str_ and don't get a test pseudo-failures
 # It prints out a failure even when it's not there
 '''
 clicker = cookie.ClickerState()
@@ -90,5 +93,13 @@ clicker.total_cookies = 200.0
 clicker.buy_item("test", 100.0, 30.0)
 suite.run_test(clicker.get_history(), [(0, None, 0 , 0), (0, "test", 100 , 200)], 'Test #7b: buy_item("test", 100, 30) with 100 current and 200 total cookies')
 
+# simulate_clicker() pseudo test. Again I have no idea how to compare this strings properly
+'''
+clicker = cookie.ClickerState()
+suite.run_test(cookie.simulate_clicker(cookie.provided.BuildInfo(), cookie.SIM_TIME, cookie.strategy_cursor_broken),
+               ("Total cookies produced:" + str(1153308849166.0) +
+                 " Current amount of cookies:" + str(6965195661.5) + 
+                 " Current time in sec:" + str(10000000000.0) + " CPS: " + str(16.1)), "Test #8: simulate_clicker()")
+'''
 suite.report_results()
                

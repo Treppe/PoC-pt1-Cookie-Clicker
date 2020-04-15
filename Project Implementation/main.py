@@ -3,7 +3,7 @@ Cookie Clicker Simulator
 """
 
 import simpleplot
-
+import math
 # Used to increase the timeout, if necessary
 import codeskulptor
 codeskulptor.set_timeout(20)
@@ -81,8 +81,8 @@ class ClickerState:
 
         Should return a float with no fractional part
         """
-        time = (cookies - self.get_cookies()) // self.get_cps()
-        if time < 0 : time = 0
+        time = math.ceil((cookies - self.get_cookies()) / self.get_cps())
+        if time < 0 :time = 0.0
         return float(time)
     
     def wait(self, time):
@@ -106,6 +106,7 @@ class ClickerState:
             self.cookies_cur_num -= cost
             self.cps += additional_cps
             self.history.append((self.get_time(), item_name, cost, self.total_cookies))
+
    
     
 def simulate_clicker(build_info, duration, strategy):
@@ -114,10 +115,22 @@ def simulate_clicker(build_info, duration, strategy):
     duration with the given strategy.  Returns a ClickerState
     object corresponding to the final state of the game.
     """
-
-    # Replace with your code
-    return ClickerState()
-
+    build_clone = build_info.clone()
+    clicker = ClickerState()
+    while clicker.get_time() <= duration:
+        time_left = duration - clicker.get_time()
+        item = strategy(clicker.get_cookies(), clicker.get_cps(), clicker.get_history(), time_left, build_clone)
+        if item == None: break
+        time_elapse = clicker.time_until(build_clone.get_cost(item))
+        if time_elapse > time_left:
+            clicker.wait(duration - clicker.get_time())
+            return clicker
+        clicker.wait(time_elapse)
+        clicker.buy_item(item, build_clone.get_cost(item), build_clone.get_cps(item))
+        build_clone.update_item(item)
+        print
+    print clicker.get_history()
+    return clicker
 
 def strategy_cursor_broken(cookies, cps, history, time_left, build_info):
     """
@@ -186,6 +199,6 @@ def run():
     # run_strategy("Expensive", SIM_TIME, strategy_expensive)
     # run_strategy("Best", SIM_TIME, strategy_best)
     
-run()
+#run()
     
 
